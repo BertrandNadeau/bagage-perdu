@@ -306,7 +306,7 @@
 
     function buildMessage(lat, lon) {
       const mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
-      return `Bonjour Bertrand, j'ai trouvé votre bagage. Localisation de vos bagages: ${mapsLink}. Voici mes coordonnées:`;
+      return `Bonjour Bertrand, j'ai trouvé votre bagage. Ma position: ${mapsLink}`;
     }
 
     findBtn.addEventListener("click", () => {
@@ -315,7 +315,7 @@
           "La localisation automatique requiert un site publié en HTTPS. Utilisez Google Sites, puis réessayez. / Automatic location requires the page to be hosted on HTTPS.",
           "error"
         );
-        openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage. Voici mes coordonnées: ");
+        openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage.");
         return;
       }
 
@@ -333,7 +333,7 @@
             "Impossible d'obtenir la position. Un SMS simple va s'ouvrir. / Could not get your location. A standard text message will open.",
             "error"
           );
-          openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage. Voici mes coordonnées: ");
+          openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage.");
         },
         {
           enableHighAccuracy: true,
