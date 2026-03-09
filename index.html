@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Bagage perdu / Lost luggage</title>
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #1e293b;
+      --card: rgba(255,255,255,0.96);
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #0ea5e9;
+      --accent2: #0284c7;
+      --success: #0f766e;
+      --danger: #b91c1c;
+      --shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(14,165,233,0.35), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(34,197,94,0.20), transparent 26%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 540px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero {
+      padding: 22px 22px 14px;
+      background: linear-gradient(135deg, #e0f2fe, #f8fafc 55%, #dcfce7);
+      border-bottom: 1px solid rgba(15,23,42,0.08);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(15,23,42,0.08);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(30px, 6vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .intro {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 18px 22px;
+    }
+
+    .highlight {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .notice {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid rgba(15,23,42,0.08);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 15px;
+    }
+
+    .cta-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      width: 100%;
+      text-align: left;
+      text-decoration: none;
+      color: white;
+      padding: 18px 18px;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.2;
+      box-shadow: 0 10px 22px rgba(2,132,199,0.22);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    }
+
+    .btn small {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0.92;
+      margin-top: 4px;
+    }
+
+    .btn:active { transform: translateY(1px) scale(0.997); }
+    .btn:hover { opacity: 0.96; }
+
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); }
+    .btn-secondary { background: linear-gradient(135deg, #0f766e, #115e59); box-shadow: 0 10px 22px rgba(15,118,110,0.22); }
+    .btn-light {
+      background: white;
+      color: var(--text);
+      border: 1px solid rgba(15,23,42,0.10);
+      box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+    }
+
+    .btn-light small { color: var(--muted); opacity: 1; }
+
+    .status {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      font-size: 14px;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .status.show { display: block; }
+    .status.error { background: #fef2f2; border-color: #fecaca; color: var(--danger); }
+    .status.ok { background: #ecfeff; border-color: #a5f3fc; color: var(--success); }
+
+    .contact {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid rgba(15,23,42,0.08);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding: 0 22px 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .tiny { font-size: 12px; color: #64748b; }
+    .arrow { font-size: 22px; line-height: 1; }
+
+    @media (max-width: 380px) {
+      .btn { font-size: 17px; padding: 16px; }
+      .hero, .section, .footer { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="hero">
+        <div class="badge">🧳 Lost luggage / Bagage perdu</div>
+        <h1>J’ai trouvé ce bagage<br><span style="font-weight:700; color:#0369a1;">I found this luggage</span></h1>
+        <p class="intro">
+          🇫🇷 Merci de me contacter ou de partager votre position.<br>
+          🇬🇧 Please contact me or share your location.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="highlight">
+          <div class="notice">
+            <strong>🇫🇷 Action rapide</strong>
+            Appuyez sur le bouton ci-dessous pour préparer un message texte avec un lien Google Maps de votre position.
+          </div>
+          <div class="notice">
+            <strong>🇬🇧 Quick action</strong>
+            Tap the button below to prepare a text message with a Google Maps link to your current location.
+          </div>
+        </div>
+
+        <div class="cta-grid">
+          <button class="btn btn-primary" id="findBtn" type="button">
+            <span>
+              J’ai trouvé ce bagage<br>
+              <small>I found this luggage — send SMS + location</small>
+            </span>
+            <span class="arrow">→</span>
+          </button>
+
+          <a class="btn btn-secondary" href="sms:+14185640550?body=Bonjour Bertrand, j'ai trouvé votre bagage.">
+            <span>
+              Envoyer un SMS<br>
+              <small>Send a text message</small>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a class="btn btn-light" href="tel:+14185640550">
+            <span>
+              Appeler Bertrand Nadeau<br>
+              <small>Call Bertrand Nadeau</small>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a class="btn btn-light" href="mailto:bertrand.nadeau@gmail.com?subject=Bagage retrouvé%20%2F%20Lost%20luggage&body=Bonjour%20Bertrand%2C%20j'ai%20trouvé%20votre%20bagage.">
+            <span>
+              Envoyer un courriel<br>
+              <small>Send an email</small>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+
+      <div class="section" style="padding-top: 0;">
+        <div class="contact">
+          <div class="contact-row">👤 <div><strong>Bertrand Nadeau</strong></div></div>
+          <div class="contact-row">📧 <div><a href="mailto:bertrand.nadeau@gmail.com">bertrand.nadeau@gmail.com</a></div></div>
+          <div class="contact-row">📱 <div><a href="tel:+14185640550">1 (418) 564-0550</a></div></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div>🇫🇷 Le partage de position demandera votre autorisation. Une fois le lien ouvert, appuyez sur <strong>Envoyer</strong> dans Messages.</div>
+        <div style="margin-top:8px;">🇬🇧 Location sharing requires your permission. Once Messages opens, tap <strong>Send</strong>.</div>
+        <div class="tiny" style="margin-top:12px;">Optimisé pour QR code et tag NFC ouvrant directement cette page.</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const phone = "+14185640550";
+    const statusEl = document.getElementById("status");
+    const findBtn = document.getElementById("findBtn");
+
+    function showStatus(message, type) {
+      statusEl.textContent = message;
+      statusEl.className = "status show" + (type ? " " + type : "");
+    }
+
+    function openSmsWithMessage(message) {
+      const encoded = encodeURIComponent(message);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const separator = isIOS ? "&" : "?";
+      window.location.href = `sms:${phone}${separator}body=${encoded}`;
+    }
+
+    function buildMessage(lat, lon) {
+      const mapsLink = `https://maps.google.com/?q=${lat},${lon}`;
+      return `Bonjour Bertrand, j'ai trouvé votre bagage. Ma position: ${mapsLink}`;
+    }
+
+    findBtn.addEventListener("click", () => {
+      if (!window.isSecureContext || !navigator.geolocation) {
+        showStatus(
+          "La localisation automatique requiert un site publié en HTTPS. Utilisez Google Sites, puis réessayez. / Automatic location requires the page to be hosted on HTTPS.",
+          "error"
+        );
+        openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage.");
+        return;
+      }
+
+      showStatus("Demande de localisation en cours… / Requesting your location…", "ok");
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const message = buildMessage(latitude, longitude);
+          showStatus("Position ajoutée. L'application Messages va s'ouvrir. / Location added. Messages will open now.", "ok");
+          openSmsWithMessage(message);
+        },
+        () => {
+          showStatus(
+            "Impossible d'obtenir la position. Un SMS simple va s'ouvrir. / Could not get your location. A standard text message will open.",
+            "error"
+          );
+          openSmsWithMessage("Bonjour Bertrand, j'ai trouvé votre bagage.");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        }
+      );
+    });
+  </script>
+</body>
+</html>
