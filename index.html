@@ -198,9 +198,9 @@
 <body>
   <div class="wrap">
     <div class="card">
-      <div class="badge">Scan if found</div>
-
-      <h1>🧳 Lost luggage / Bagage perdu</h1>
+      
+      <h1>🧳 Lost luggage<br>
+      🧳 Bagage perdu</h1>
 
       <p class="intro">
         🇺🇸 Thank you for helping return this luggage.<br>
@@ -221,7 +221,7 @@
 
       <div class="grid two">
         <a class="btn" href="tel:+14185640550">📞 Call / Appeler</a>
-        <a class="btn dark" href="mailto:bertrand.nadeau@gmail.com?subject=Bagage retrouvé%20%2F%20Luggage%20found&body=Bonjour%20Bertrand%2C%20j%27ai%20trouv%C3%A9%20votre%20bagage.%0A%0AHello%20Bertrand%2C%20I%20found%20your%20luggage.">📧 Courriel / Email</a>
+        <a class="btn dark" href="mailto:bertrand.nadeau@gmail.com?subject=Luggage%20found%20%2F%20Bagage%20retrouvé&body=Hello%20Bertrand%2C%20I%20found%20your%20luggage.%0A%0ABonjour%20Bertrand%2C%20j%27ai%20trouv%C3%A9%20votre%20bagage.">📧 Courriel / Email</a>
       </div>
 
       <div class="grid two">
@@ -237,10 +237,6 @@
         1 (418) 564-0550
       </div>
       
-      <div class="note">
-        QR et NFC devraient pointer vers cette même page.<br>
-        For best results, publish this page over HTTPS.
-      </div>
     </div>
   </div>
 
@@ -283,10 +279,13 @@
 
       return [
         "Hello Bertrand, I found your luggage.",
+        "",
+        "Bonjour Bertrand, j'ai trouvé votre bagage.",
+        "",
         `My location / Ma position: ${gmaps}`,
         `Apple Maps: ${amaps}`,
         "",
-        "Bonjour Bertrand, j'ai trouvé votre bagage."
+        "My name is ___."
       ].join("\n");
     }
 
