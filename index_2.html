@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bagage perdu / Lost luggage</title>
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --primary:#0a84ff;
+      --primary-dark:#0066cc;
+      --success:#16a34a;
+      --danger:#dc2626;
+      --border:#dbe4ee;
+      --shadow:0 10px 30px rgba(15, 23, 42, 0.10);
+      --radius:18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      background:linear-gradient(180deg,#eef4fb 0%, #f8fbff 100%);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:520px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:22px 18px 18px;
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      padding:7px 10px;
+      border-radius:999px;
+      background:#eef6ff;
+      color:#0b5fc2;
+      margin-bottom:12px;
+    }
+
+    h1{
+      font-size:30px;
+      line-height:1.1;
+      margin:0 0 10px;
+      text-align:center;
+    }
+
+    .intro{
+      text-align:center;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.45;
+      margin:0 0 18px;
+    }
+
+    .lang{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:16px;
+      font-size:15px;
+      line-height:1.45;
+    }
+
+    .lang p{
+      margin:0 0 8px;
+    }
+
+    .lang p:last-child{
+      margin-bottom:0;
+    }
+
+    .cta-main{
+      display:block;
+      width:100%;
+      border:none;
+      border-radius:16px;
+      padding:18px 16px;
+      font-size:20px;
+      font-weight:800;
+      text-align:center;
+      text-decoration:none;
+      cursor:pointer;
+      background:var(--success);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(22,163,74,.18);
+      margin-bottom:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      border:none;
+      border-radius:14px;
+      padding:15px 14px;
+      font-size:17px;
+      font-weight:700;
+      text-align:center;
+      text-decoration:none;
+      cursor:pointer;
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn:active,
+    .cta-main:active{
+      transform:translateY(1px);
+    }
+
+    .btn.secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    .btn.dark{
+      background:var(--primary-dark);
+    }
+
+    .contact{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid var(--border);
+      text-align:center;
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .contact strong{
+      font-size:18px;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .note{
+      margin-top:14px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+    }
+
+    .status{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:12px;
+      background:#f8fafc;
+      border:1px solid var(--border);
+      font-size:14px;
+      color:var(--muted);
+      display:none;
+    }
+
+    .reward{
+      margin-top:12px;
+      text-align:center;
+      color:var(--danger);
+      font-size:15px;
+      font-weight:700;
+    }
+
+    @media (min-width: 560px){
+      .grid.two{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="badge">Scan if found</div>
+
+      <h1>🧳 Bagage perdu</h1>
+
+      <p class="intro">
+        Merci de m’aider à récupérer ce bagage.<br>
+        Thank you for helping return this luggage.
+      </p>
+
+      <div class="lang">
+        <p><strong>🇫🇷 Français</strong><br>
+        Si vous avez trouvé ce bagage, appuyez sur le bouton vert pour m’envoyer un message avec votre position.</p>
+
+        <p><strong>🇺🇸 English</strong><br>
+        If you found this luggage, tap the green button to send me a message with your location.</p>
+      </div>
+
+      <button class="cta-main" onclick="sendFoundMessage()">
+        📍 J’ai trouvé ce bagage / I found this luggage
+      </button>
+
+      <div class="grid two">
+        <a class="btn" href="tel:+14185640550">📞 Appeler / Call</a>
+        <a class="btn dark" href="mailto:bertrand.nadeau@gmail.com?subject=Bagage retrouvé%20%2F%20Luggage%20found&body=Bonjour%20Bertrand%2C%20j%27ai%20trouv%C3%A9%20votre%20bagage.%0A%0AHello%20Bertrand%2C%20I%20found%20your%20luggage.">📧 Courriel / Email</a>
+      </div>
+
+      <div class="grid two">
+        <button class="btn secondary" onclick="openAppleMaps()">🍎 Apple Plans</button>
+        <button class="btn secondary" onclick="openGoogleMaps()">📍 Google Maps</button>
+      </div>
+
+      <div id="status" class="status"></div>
+
+      <div class="contact">
+        <strong>Bertrand Nadeau</strong>
+        bertrand.nadeau@gmail.com<br>
+        1 (418) 564-0550
+      </div>
+
+      <div class="reward">Reward offered / Récompense offerte</div>
+
+      <div class="note">
+        QR et NFC devraient pointer vers cette même page.<br>
+        For best results, publish this page over HTTPS.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const phoneE164 = "+14185640550";
+    const email = "bertrand.nadeau@gmail.com";
+
+    function setStatus(message, visible = true) {
+      const el = document.getElementById("status");
+      el.textContent = message;
+      el.style.display = visible ? "block" : "none";
+    }
+
+    function googleMapsLink(lat, lon) {
+      return `https://www.google.com/maps?q=${lat},${lon}`;
+    }
+
+    function appleMapsLink(lat, lon) {
+      return `https://maps.apple.com/?ll=${lat},${lon}`;
+    }
+
+    function smsLink(body) {
+      const encoded = encodeURIComponent(body);
+      const isiPhone = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      return isiPhone
+        ? `sms:${phoneE164}&body=${encoded}`
+        : `sms:${phoneE164}?body=${encoded}`;
+    }
+
+    function fallbackMessage() {
+      return [
+        "Bonjour Bertrand, j'ai trouvé votre bagage.",
+        "Hello Bertrand, I found your luggage."
+      ].join("\n");
+    }
+
+    function buildFoundMessage(lat, lon) {
+      const gmaps = googleMapsLink(lat, lon);
+      const amaps = appleMapsLink(lat, lon);
+
+      return [
+        "Bonjour Bertrand, j'ai trouvé votre bagage.",
+        `Ma position / My location: ${gmaps}`,
+        `Apple Maps: ${amaps}`,
+        "",
+        "Hello Bertrand, I found your luggage."
+      ].join("\n");
+    }
+
+    function getLocation(success, failure) {
+      if (!("geolocation" in navigator)) {
+        failure("La géolocalisation n'est pas disponible sur cet appareil.");
+        return;
+      }
+
+      setStatus("Demande de localisation en cours… / Requesting location…");
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude.toFixed(6);
+          const lon = position.coords.longitude.toFixed(6);
+          success(lat, lon);
+        },
+        () => {
+          failure("Localisation refusée ou indisponible. Un SMS standard va s’ouvrir.");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 60000
+        }
+      );
+    }
+
+    function sendFoundMessage() {
+      getLocation(
+        (lat, lon) => {
+          setStatus("Localisation trouvée. Ouverture du SMS… / Location found. Opening text message…");
+          window.location.href = smsLink(buildFoundMessage(lat, lon));
+        },
+        (msg) => {
+          setStatus(msg);
+          window.location.href = smsLink(fallbackMessage());
+        }
+      );
+    }
+
+    function openAppleMaps() {
+      getLocation(
+        (lat, lon) => {
+          window.open(appleMapsLink(lat, lon), "_blank");
+        },
+        (msg) => {
+          setStatus(msg);
+          window.open("https://maps.apple.com/", "_blank");
+        }
+      );
+    }
+
+    function openGoogleMaps() {
+      getLocation(
+        (lat, lon) => {
+          window.open(googleMapsLink(lat, lon), "_blank");
+        },
+        (msg) => {
+          setStatus(msg);
+          window.open("https://www.google.com/maps", "_blank");
+        }
+      );
+    }
+  </script>
+</body>
+</html>
