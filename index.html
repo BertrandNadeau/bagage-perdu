@@ -180,14 +180,6 @@
       display:none;
     }
 
-    .reward{
-      margin-top:12px;
-      text-align:center;
-      color:var(--danger);
-      font-size:15px;
-      font-weight:700;
-    }
-
     @media (min-width: 560px){
       .grid.two{
         grid-template-columns:1fr 1fr;
@@ -266,9 +258,17 @@
     }
 
     function fallbackMessage() {
+      const gmaps = googleMapsLink(lat, lon);
+      const amaps = appleMapsLink(lat, lon);  
+      
       return [
         "Hello Bertrand, I found your luggage.",
         "Bonjour Bertrand, j'ai trouvé votre bagage.",
+        `Location / Emplacement:`,
+        "",
+        `Google Maps:  ${gmaps}`,
+        "",
+        `Apple Maps:   ${amaps}`,        
       ].join("\n");
     }
 
