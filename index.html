@@ -259,17 +259,10 @@
     }
 
     function fallbackMessage() {
-      const gmaps = googleMapsLink(lat, lon);
-      const amaps = appleMapsLink(lat, lon);  
-      
+    
       return [
         "Hello Bertrand, I found your luggage.",
         "Bonjour Bertrand, j'ai trouvé votre bagage.",
-        `Location / Emplacement:`,
-        "",
-        `Google Maps:  ${gmaps}`,
-        "",
-        `Apple Maps:   ${amaps}`,        
       ].join("\n");
     }
 
